@@ -1,3 +1,5 @@
+<img width="793" height="732" alt="billede" src="https://github.com/user-attachments/assets/46c2579e-dc2a-43fe-bd3b-f5b512d483e4" />
+
 # Device Volume Plugin for OpenDeck
 
 Control the volume of any PipeWire output device directly from OpenDeck.
