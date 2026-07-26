@@ -34,6 +34,26 @@ async function getOutputDevices() {
 }
 
 /*
+ * Find aktuelt PipeWire-ID ud fra navn eller ID
+ */
+async function resolveDevice(device) {
+
+    // Hvis der allerede er et numerisk ID
+    if (/^\d+$/.test(device))
+        return device;
+
+    const devices = await getOutputDevices();
+
+    const match = devices.find(d => d.name === device);
+
+    if (!match)
+        throw new Error(`Output device "${device}" blev ikke fundet`);
+
+    return match.id;
+
+}
+
+/*
  * Find output devices i wpctl status
  */
 function parseDevices(text) {
@@ -88,7 +108,9 @@ function parseDevices(text) {
 /*
  * Hent volumen på et device
  */
-async function getVolume(id) {
+async function getVolume(device) {
+
+    const id = await resolveDevice(device);
 
     const output = await run(`wpctl get-volume ${id}`);
 
@@ -115,7 +137,9 @@ function parseVolume(text) {
 /*
  * Ændr volumen
  */
-async function setVolume(id, amount) {
+async function setVolume(device, amount) {
+
+    const id = await resolveDevice(device);
 
     let current = await getVolume(id);
 
@@ -134,7 +158,9 @@ async function setVolume(id, amount) {
 /*
  * Mute
  */
-async function setMute(id, mute = true) {
+async function setMute(device, mute = true) {
+
+    const id = await resolveDevice(device);
 
     await run(`wpctl set-mute ${id} ${mute ? 1 : 0}`);
 
@@ -177,7 +203,7 @@ async function getDefaultOutputDevice() {
         const match = line.match(/^\s*[│├└ ]*\*\s*(\d+)\.\s+(.+)$/);
 
         if (match)
-            return match[1];
+            return match[2].replace(/\s+\[vol:.*?\]$/, "").trim();
 
     }
 

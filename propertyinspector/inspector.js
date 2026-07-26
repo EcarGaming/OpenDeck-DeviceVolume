@@ -108,8 +108,8 @@ function fillDevices(devices) {
 
         const option = document.createElement("option");
 
-        option.value = device.id;
-
+        option.value = device.name;
+        
         option.textContent = device.name;
 
         deviceSelect.appendChild(option);
