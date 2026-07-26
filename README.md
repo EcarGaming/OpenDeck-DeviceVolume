@@ -1,43 +1,53 @@
-# OpenDeck Device Volume
+# Device Volume Plugin for OpenDeck
 
 Control the volume of any PipeWire output device directly from OpenDeck.
 
+This plugin is designed for Linux systems using PipeWire and allows each action to control an individual output device, including virtual sinks.
+
 ## Features
 
-- Select any available PipeWire output device.
-- Increase the volume.
-- Decrease the volume.
-- Automatically detects physical and virtual PipeWire output devices.
-- Supports USB audio interfaces, HDMI outputs, analog sound cards and virtual sinks.
+- List all available PipeWire output devices automatically.
+- Select any output device from a dropdown menu.
+- Increase volume.
+- Decrease volume.
+- Mute output.
+- Works with both physical devices and virtual sinks.
+- Automatically detects the current default output device.
 
 ## Requirements
 
 - Linux
 - PipeWire
-- OpenDeck
-- `wpctl`
+- `wpctl` available in your PATH
 
-## Installation
+You can verify that `wpctl` is installed by running:
 
-1. Download the latest release.
-2. Install the plugin in OpenDeck.
-3. Restart OpenDeck.
-4. Add a **Volume Up** or **Volume Down** action to your deck.
-5. Select the output device from the dropdown list.
+```bash
+wpctl status
+```
 
 ## Supported Devices
 
+The plugin works with:
+
+- Physical sound cards
+- USB audio interfaces
+- HDMI audio outputs
+- Virtual PipeWire sinks
+
 Examples:
 
-- PipeWire virtual sinks
-- HDMI audio outputs
-- USB audio interfaces
-- Analog sound cards
 - Elgato Wave XLR
+- HDMI Audio
+- PipeWire virtual sinks
 
-## How it works
+## Installation
 
-The plugin queries available output devices using:
+Copy the plugin into your OpenDeck plugins directory and restart OpenDeck.
+
+## How It Works
+
+The plugin reads the available output devices from:
 
 ```bash
 wpctl status
@@ -46,12 +56,25 @@ wpctl status
 Volume changes are performed using:
 
 ```bash
-wpctl set-volume
+wpctl set-volume <device-id> <volume>
 ```
 
-## Compatibility
+Mute is performed using:
 
-Tested on:
+```bash
+wpctl set-mute <device-id> 1
+```
 
-- Bazzite Linux
-- PipeWire
+The default output device is detected automatically by reading the active sink from `wpctl status`.
+
+## Notes
+
+This plugin does **not** change the default PipeWire output device.
+
+Each action only controls the device selected in its settings.
+
+# Device Volume Plugin for OpenDeck
+
+Created by **EcarGaming**
+
+Control the volume of any PipeWire output device directly from OpenDeck.

@@ -1,0 +1,42 @@
+{
+    "Author": "Peter Jeppesen",
+    "Name": "Device Volume",
+    "Description": "Control the volume of PipeWire output devices.",
+    "Version": "1.0.0",
+    "UUID": "com.ecargaming.devicevolume",
+
+    "Icon": "icons/up_100",
+    "Category": "EcarGaming",
+    "CategoryIcon": "icons/up_100",
+
+    "CodePathLin": "src/index.js",
+
+    "OS": [
+        {
+            "Platform": "linux"
+        }
+    ],
+
+    "Actions": [
+        {
+            "Name": "Device Volume",
+            "UUID": "com.ecargaming.devicevolume.action",
+            "Icon": "icons/up_100",
+            "PropertyInspectorPath": "propertyinspector/index.html",
+
+            "Controllers": [
+                "Keypad"
+            ],
+
+            "SupportedInMultiActions": true,
+
+            "Tooltip": "Control output device volume",
+
+            "States": [
+                {
+                    "Image": "icons/up_100"
+                }
+            ]
+        }
+    ]
+}

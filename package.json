@@ -1,0 +1,18 @@
+{
+  "name": "devicevolume",
+  "version": "1.0.0",
+  "description": "OpenDeck plugin for controlling PipeWire output device volume.",
+  "author": "Peter Jeppesen",
+  "license": "MIT",
+  "private": true,
+
+  "main": "src/index.js",
+
+  "scripts": {
+    "start": "node src/index.js"
+  },
+
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
