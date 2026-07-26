@@ -1,59 +1,52 @@
 # OpenDeck Device Volume
 
-Control the volume of individual PipeWire output devices directly from OpenDeck.
+Control the volume of any PipeWire output device directly from OpenDeck.
 
 ## Features
 
-- Control the volume of any PipeWire output device.
-- Increase and decrease volume.
-- Mute and unmute devices.
-- Automatically detects all available PipeWire sinks.
-- Supports physical audio devices, USB interfaces, HDMI outputs and virtual PipeWire sinks.
-- Automatically selects the current default output device.
+- Select any available PipeWire output device.
+- Increase the volume.
+- Decrease the volume.
+- Automatically detects physical and virtual PipeWire output devices.
+- Supports USB audio interfaces, HDMI outputs, analog sound cards and virtual sinks.
 
 ## Requirements
 
 - Linux
 - PipeWire
 - OpenDeck
-- `wpctl` installed and available in your PATH
+- `wpctl`
 
 ## Installation
 
 1. Download the latest release.
 2. Install the plugin in OpenDeck.
 3. Restart OpenDeck.
-4. Add one of the Device Volume actions to your deck.
-5. Select the desired output device from the dropdown list.
+4. Add a **Volume Up** or **Volume Down** action to your deck.
+5. Select the output device from the dropdown list.
 
 ## Supported Devices
 
-Examples include:
+Examples:
 
 - PipeWire virtual sinks
-- HDMI audio
+- HDMI audio outputs
 - USB audio interfaces
 - Analog sound cards
 - Elgato Wave XLR
 
 ## How it works
 
-The plugin reads available output devices using:
+The plugin queries available output devices using:
 
 ```bash
 wpctl status
 ```
 
-Volume is controlled using:
+Volume changes are performed using:
 
 ```bash
 wpctl set-volume
-```
-
-Mute is controlled using:
-
-```bash
-wpctl set-mute
 ```
 
 ## Compatibility
@@ -62,5 +55,3 @@ Tested on:
 
 - Bazzite Linux
 - PipeWire
-
-Other Linux distributions using PipeWire should also work.
